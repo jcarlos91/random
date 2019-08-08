@@ -1,0 +1,62 @@
+body > .container{
+  padding: 60px 15px 0;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+.image{
+  width: 190px; 
+  float: left; 
+  padding: 5px;
+  border: 1px solid #ccc; 
+  margin: 8px 10px 0px 0px;
+}
+.highlight { 
+  color: #F48A00;
+}
+.titleblue{
+  color: #337ab7;
+}
+
+.comments { clear: both; }
+.contents .odd { background: #eee; }
+.comments .comments { padding: 20px; }
+.comments .comments p { margin-bottom:  0px;}
+.comments h3 { background: #eee; padding: 10px; font-size: 20px; margin-bottom: 20px; clear: both; }
+.comments .previous-comments { margin-bottom: 20px; }

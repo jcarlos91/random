@@ -1,0 +1,36 @@
+{% set title = 'Login' %}
+{% block stylesheets %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+    <title>{{ title|default('Inicio') }}</title>
+    <link rel="stylesheet" href="{{ asset('css/reset.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/supersized.css')}}">
+{% endblock %}
+{% block nav %}{% endblock %}
+{% block contenido %}
+    <div class="page-container">
+        <h1>Login</h1>
+        <form action="{{ path('fos_user_security_check') }}" method="post">
+            <input type="text" name="_username" class="username" placeholder="Username">
+            <input type="password" name="_password" class="password" placeholder="Password">
+            <input type="hidden" name="_target_path" value="/" />
+            <button type="submit">Sign me in</button>
+            <div class="error"><span>+</span></div>
+        </form><br>
+        {% if error %}
+            <div id="connect">{{ error.message | trans({}, 'security') }} <a class=" login" href="{#{ url('') }#}">Restablecer Contraseña</a></div>
+        {% endif %}
+        <a class="login" href="{{url('fos_user_registration_register')}}">Registrarse</a>
+    </div>
+{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block javascripts %}
+    <script src="{{asset('js/jquery-1.8.2.min.js')}}"></script>
+    <script src="{{asset('js/supersized.3.2.7.min.js')}}"></script>
+    <script src="{{asset('js/supersized-init.js')}}"></script>
+    <script src="{{asset('js/scripts.js')}}"></script>
+{% endblock  %}
+{#{% block fos_user_content %}#}
+    {#{{ include('@FOSUser/Security/login_content.html.twig') }}#}
+{#{% endblock fos_user_content %}#}

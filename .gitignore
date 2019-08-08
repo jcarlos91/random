@@ -1,0 +1,38 @@
+## Symfony
+/web/bundles/
+/var/bootstrap.php.cache
+/var/cache/*
+/var/sessions/*
+/var/config/parameters.yml
+/var/logs/*
+/var/phpunit.xml
+/build/
+/vendor/
+/bin/
+/composer.phar
+
+## PhpStorm
+.idea/
+.DefuseEncryptor*
+.HaliteEncryptor*
+
+## NetBeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+.DefuseEncryptor.key
+.HaliteEncryptor.key
+
+## Sublime text
+# cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# workspace files are user-specific
+*.sublime-workspace
