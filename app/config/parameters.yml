@@ -2,11 +2,11 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: proyect
-    database_user: root
-    database_password: root
+    database_name: 
+    database_user:
+    database_password:
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: carlos91.jcc@gmail.com
+    mailer_user:
     mailer_password: null
     secret: d1cdb876e2a1e1159c8237330a43301fa7bcc5f2
