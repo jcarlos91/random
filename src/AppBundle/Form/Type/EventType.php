@@ -20,7 +20,103 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('startDateTime', DateTimeType::class, [
+            ->add('evento',TextType::class,[
+                'label' => 'Evento',
+                'placeholder' => 'Evento',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('nombre',TextType::class,[
+                'label' => 'Nombre',
+                'placeholder' => 'Nombre',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('apellidoPaterno',TextType::class,[
+                'label' => 'Apellido Paterno',
+                'placeholder' => 'Apellido Paterno',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('apellidoMaterno',TextType::class,[
+                'label' => 'Apellido Materno',
+                'placeholder' => 'Apellido Materno',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('telefono',TextType::class,[
+                'label' => 'Teléfono',
+                'placeholder' => 'Teléfono',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('celular',TextType::class,[
+                'label' => 'Teléfono Celular',
+                'placeholder' => 'Teléfono Celular',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('email',TextType::class,[
+                'label' => 'Email',
+                'placeholder' => 'Email',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('direccion',TextType::class,[
+                'label' => 'Dirección',
+                'placeholder' => 'Dirección',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('cp',TextType::class,[
+                'label' => 'Código Postal',
+                'placeholder' => 'Código Postal',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('municipio',TextType::class,[
+                'label' => 'Municipio',
+                'placeholder' => 'Municipio',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('estado',TextType::class,[
+                'label' => 'Estado',
+                'placeholder' => 'Estado',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('empresa',TextType::class,[
+                'label' => 'Empresa',
+                'placeholder' => 'Empresa',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'required' =>true
+            ])
+            ->add('fecha', DateTimeType::class, [
                 'label' => 'Fecha Inicio',
                 'placeholder' => [
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
@@ -32,46 +128,6 @@ class EventType extends AbstractType
                 ],
                 'required' =>false
             ])
-            ->add('endDateTime', DateTimeType::class, [
-                'label' => 'Fecha Fin',
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                    'hour' => 'Hour', 'minute' => 'Minute', 'second' => 'Second',
-                ],
-                'widget' => 'single_text',
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'required' =>false
-            ])
-            ->add('titulo',TextType::class,[
-                'label' => 'Titulo',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-            ->add('observations',TextType::class,[
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'required' =>false
-            ])
-
-//            ->add('estatus',EntityType::class,[
-//                'class' => 'AppBundle\Entity\Estatus',
-//                'placeholder' => 'Seleccionar',
-//                'query_builder' => function (EntityRepository $er) {
-//                    return $er->createQueryBuilder('e')
-//                        ->where('e.deleted = 0')
-//                        ->orderBy('e.estatus', 'ASC');
-//                },
-//                'choice_label' => 'estatus',
-//                'attr' => [
-//                    'class' => 'form-control'
-//                ],
-//                'required' =>true
-//            ])
-
             ->add('save',SubmitType::class,[
                 'label' => 'Guardar',
                 'attr' => [

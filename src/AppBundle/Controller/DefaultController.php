@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends BaseController
 {
     /**
-     * @Route("/admin/", name="homepage")
+     * @Route("/", name="homepage")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -51,14 +51,20 @@ class DefaultController extends BaseController
                 if ($save) {
                     $em->getConnection()->beginTransaction();
                     try {
-                        $estatus = $em->getRepository('AppBundle:Estatus')->findOneBy(['estatus'=> Estatus::PENDIENTE]);
                         $associate = $this->getUser();
                         $meeting->setUserCreated($associate);
-                        $meeting->setStartDateTime($form->get('startDateTime')->getData());
-                        $meeting->setEndDateTime($form->get('endDateTime')->getData());
-                        $meeting->setObservations($form->get('observations')->getData());
-                        $meeting->setTitulo($form->get('titulo')->getData());
-                        $meeting->setEstatus($estatus);
+                        $meeting->setNombre($form->get('nombre')->getData());
+                        $meeting->setApellidoPaterno($form->get('apellidoPaterno')->getData());
+                        $meeting->setApellidoMaterno($form->get('apellidoMaterno')->getData());
+                        $meeting->setCelular($form->get('celular')->getData());
+                        $meeting->setTelefono($form->get('telefono')->getData());
+                        $meeting->setDireccion($form->get('direccion')->getData());
+                        $meeting->setCP($form->get('cp')->getData());
+                        $meeting->setEstado($form->get('estatdo')->getData());
+                        $meeting->setMunicipio($form->get('municipio')->getData());
+                        $meeting->setEmpresa($form->get('empresa')->getData());
+                        $meeting->setFecha($form->get('fecha')->getData());
+                        $meeting->setEmail($form->get('empresa')->getData());
                         $meeting->setDelete(0);
                         $meeting->setDateCreated(new \DateTime('now'));
                         $em->persist($meeting);

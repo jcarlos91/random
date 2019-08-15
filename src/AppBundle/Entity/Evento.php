@@ -22,6 +22,97 @@ class Evento
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="evento", type="string", length=255)
+     */
+    private $evento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apellido_paterno", type="string", length=255)
+     */
+    private $apellidoPaterno;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apellido_materno", type="string", length=255)
+     */
+    private $apellidoMaterno;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=255)
+     */
+    private $telefono;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celular", type="string", length=255)
+     */
+    private $celular;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=255)
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cp", type="string", length=255)
+     */
+    private $cp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="municipio", type="string", length=255)
+     */
+    private $municipio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=255)
+     */
+    private $estado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="empresa", type="string", length=255)
+     */
+    private $empresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fecha", type="string", length=255)
+     */
+    private $fecha;
+
+    /**
      * @var \AppBundle\Entity\User
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
@@ -40,48 +131,11 @@ class Evento
     private $userModified;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fecha_inicio", type="datetime")
-     */
-    private $startDateTime;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fecha_fin", type="datetime")
-     */
-    private $endDateTime;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="observaciones", type="string", length=255)
-     */
-    private $observations;
-
-    /**
-     * @var \AppBundle\Entity\Estatus
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Estatus")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="estatus_id", referencedColumnName="id")
-     * })
-     */
-    private $estatus;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="deleted", type="integer")
      */
     private $delete;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="titulo", type="string", length=255)
-     */
-    private $titulo;
 
     /**
      * @var \DateTime
@@ -132,102 +186,6 @@ class Evento
     }
 
     /**
-     * Set startDateTime
-     *
-     * @param \DateTime $startDateTime
-     *
-     * @return Evento
-     */
-    public function setStartDateTime($startDateTime)
-    {
-        $this->startDateTime = $startDateTime;
-
-        return $this;
-    }
-
-    /**
-     * Get startDateTime
-     *
-     * @return \DateTime
-     */
-    public function getStartDateTime()
-    {
-        return $this->startDateTime;
-    }
-
-    /**
-     * Set endDateTime
-     *
-     * @param \DateTime $endDateTime
-     *
-     * @return Evento
-     */
-    public function setEndDateTime($endDateTime)
-    {
-        $this->endDateTime = $endDateTime;
-
-        return $this;
-    }
-
-    /**
-     * Get endDateTime
-     *
-     * @return \DateTime
-     */
-    public function getEndDateTime()
-    {
-        return $this->endDateTime;
-    }
-
-    /**
-     * Set observations
-     *
-     * @param string $observations
-     *
-     * @return Evento
-     */
-    public function setObservations($observations)
-    {
-        $this->observations = $observations;
-
-        return $this;
-    }
-
-    /**
-     * Get observations
-     *
-     * @return string
-     */
-    public function getObservations()
-    {
-        return $this->observations;
-    }
-
-    /**
-     * Set estatus
-     *
-     * @param \AppBundle\Entity\Estatus $estatus
-     *
-     * @return Evento
-     */
-    public function setEstatus(Estatus $estatus)
-    {
-        $this->estatus = $estatus;
-
-        return $this;
-    }
-
-    /**
-     * Get estatus
-     *
-     * @return \AppBundle\Entity\Estatus
-     */
-    public function getEstatus()
-    {
-        return $this->estatus;
-    }
-
-    /**
      * @return int
      */
     public function getDelete()
@@ -241,22 +199,6 @@ class Evento
     public function setDelete($delete)
     {
         $this->delete = $delete;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitulo()
-    {
-        return $this->titulo;
-    }
-
-    /**
-     * @param string $titulo
-     */
-    public function setTitulo($titulo)
-    {
-        $this->titulo = $titulo;
     }
 
     /**
@@ -321,6 +263,214 @@ class Evento
     public function getDateModified()
     {
         return $this->dateModified;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param string $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApellidoPaterno()
+    {
+        return $this->apellidoPaterno;
+    }
+
+    /**
+     * @param string $apellidoPaterno
+     */
+    public function setApellidoPaterno($apellidoPaterno)
+    {
+        $this->apellidoPaterno = $apellidoPaterno;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApellidoMaterno()
+    {
+        return $this->apellidoMaterno;
+    }
+
+    /**
+     * @param string $apellidoMaterno
+     */
+    public function setApellidoMaterno($apellidoMaterno)
+    {
+        $this->apellidoMaterno = $apellidoMaterno;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * @param string $telefono
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCelular()
+    {
+        return $this->celular;
+    }
+
+    /**
+     * @param string $celular
+     */
+    public function setCelular($celular)
+    {
+        $this->celular = $celular;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * @param string $direccion
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCP()
+    {
+        return $this->cp;
+    }
+
+    /**
+     * @param string $cp
+     */
+    public function setCP($cp)
+    {
+        $this->cp = $cp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMunicipio()
+    {
+        return $this->municipio;
+    }
+
+    /**
+     * @param string $municipio
+     */
+    public function setMunicipio($municipio)
+    {
+        $this->municipio = $municipio;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param string $estado
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmpresa()
+    {
+        return $this->empresa;
+    }
+
+    /**
+     * @param string $empresa
+     */
+    public function setEmpresa($empresa)
+    {
+        $this->empresa = $empresa;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * @param string $fecha
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEvento()
+    {
+        return $this->evento;
+    }
+
+    /**
+     * @param string $evento
+     */
+    public function setEvento($evento)
+    {
+        $this->evento = $evento;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }
 
