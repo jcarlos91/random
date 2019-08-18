@@ -7,8 +7,10 @@ use AppBundle\Entity\Estatus;
 use AppBundle\Entity\Evento;
 use AppBundle\Form\Type\EventType;
 use Doctrine\ORM\EntityManager;
+use Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends BaseController
@@ -16,7 +18,7 @@ class DefaultController extends BaseController
     /**
      * @Route("/", name="homepage")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction(Request $request)
     {
@@ -31,10 +33,10 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @Route("/admin/new/event", name="new_event")
+     * @Route("/new/event", name="new_event")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
+     * @return Response
+     * @throws Exception
      */
     public function newEventAction(Request $request)
     {
@@ -53,6 +55,7 @@ class DefaultController extends BaseController
                     try {
                         $associate = $this->getUser();
                         $meeting->setUserCreated($associate);
+                        $meeting->setEvento($form->get('evento')->getData());
                         $meeting->setNombre($form->get('nombre')->getData());
                         $meeting->setApellidoPaterno($form->get('apellidoPaterno')->getData());
                         $meeting->setApellidoMaterno($form->get('apellidoMaterno')->getData());
@@ -60,11 +63,11 @@ class DefaultController extends BaseController
                         $meeting->setTelefono($form->get('telefono')->getData());
                         $meeting->setDireccion($form->get('direccion')->getData());
                         $meeting->setCP($form->get('cp')->getData());
-                        $meeting->setEstado($form->get('estatdo')->getData());
+                        $meeting->setEstado($form->get('estado')->getData());
                         $meeting->setMunicipio($form->get('municipio')->getData());
                         $meeting->setEmpresa($form->get('empresa')->getData());
                         $meeting->setFecha($form->get('fecha')->getData());
-                        $meeting->setEmail($form->get('empresa')->getData());
+                        $meeting->setEmail($form->get('email')->getData());
                         $meeting->setDelete(0);
                         $meeting->setDateCreated(new \DateTime('now'));
                         $em->persist($meeting);
@@ -74,7 +77,7 @@ class DefaultController extends BaseController
                             'success', 'Evento creado correctamente'
                         );
                         return $this->redirectToRoute('homepage');
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         $em->getConnection()->rollBack();
                         $this->addFlash(
                             'danger', $e->getMessage()
@@ -98,25 +101,25 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @Route("/admin/delete/{event}/event/{meeting}", name="delete_event")
-     * @param $event
-     * @param $meeting
+     * @Route("/delete/{event}/event/", name="delete_event")
+     * @param Evento $event
      * @return RedirectResponse
+     * @throws \Doctrine\DBAL\ConnectionException
      */
-    public function deleteEventAction($event, $meeting)
+    public function deleteEventAction(Evento $event)
     {
+        /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $cita = $em->getRepository('AppBundle:Citas')->find($meeting);
         try {
             $em->getConnection()->beginTransaction();
-            if ($cita) {
-                $cita->setDelete(1);
-                $this->deleteEventCalendar($event);
+            if ($event) {
+                $event->setDelete(1);
+
                 $em->flush();
                 $em->getConnection()->commit();
                 $this->addFlash('success', 'Evento eliminado correctamente');
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $em->getConnection()->rollBack();
             $this->addFlash(
                 'danger', $e->getMessage()
@@ -126,20 +129,17 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @Route("/admin/update/{event}/event/{meeting}", name="update_event")
+     * @Route("/update/{event}/event/", name="update_event")
      * @param Request $request
      * @param $event
-     * @param $meeting
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function updateEventAction(Request $request, $event, $meeting){
+    public function updateEventAction(Request $request, Evento $event){
+
+        /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
-        $cita = $em->getRepository('AppBundle:Citas')->find($meeting);
 
-        $form = $this->createForm(EventType::class,$cita);
-        $form->remove('user');
-        $form->remove('userHidden');
-
+        $form = $this->createForm(EventType::class,$event);
         $form->handleRequest($request);
 
         if($request->getMethod() == 'POST'){
@@ -148,22 +148,13 @@ class DefaultController extends BaseController
                 if($save){
                     try{
                         $em->getConnection()->beginTransaction();
-                        $eventStart = $cita->getStartDateTime();
-                        $eventEnd = $cita->getEndDateTime();
-                        $eventSummary = $cita->getUser()->getUserdetail()->__toString();
-                        $eventDescription = $cita->getId(). "-" . $form->get('observations')->getData();
-                        $em->flush();
+                        $event->setUserModified($this->getUser());
+                        $event->setDateModified(new \DateTime('now'));
                         $em->getConnection()->commit();
-                        $this->updateEvent(
-                            $event,
-                            $eventStart,
-                            $eventEnd,
-                            $eventSummary,
-                            $eventDescription
-                        );
-                        $this->addFlash('success','Cita actualizada correctamente');
+                        $em->flush();
+                        $this->addFlash('success','Evento actualizado correctamente');
                         return $this->redirectToRoute('homepage');
-                    }catch (\Exception $e){
+                    }catch (Exception $e){
                         $this->addFlash(
                             'danger', $e->getMessage()
                         );
@@ -173,40 +164,55 @@ class DefaultController extends BaseController
         }
 
         return $this->render('default/update_event.html.twig',[
-            'patient' => $cita->getUser(),
             'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/admin/event/export", name="export_event")
+     * @Route("/event/export", name="export_event")
      */
     public function exportToExcelEvent(){
         /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $columnNames = [
-            'Titulo',
-            'Observaciones',
-            'Fecha Inicio',
-            'Fecha Fin',
-            'Usuario',
-            'Estatus'
+            'Evento',
+            'Empresa',
+            'Nombre',
+            'Apellido Paterno',
+            'Apellido Materno',
+            'Fecha',
+            'Direccion',
+            'Municipio',
+            'Estado',
+            'CP',
+            'Telefono',
+            'Celular',
+            'Email'
         ];
 
         $columnValues = [];
         $events = $em->getRepository('AppBundle:Evento')->findBy(['delete'=>0]);
         foreach ($events as $event){
             $value = [
-                $event->getTitulo(),
-                $event->getObservations(),
-                $event->getStartDateTime()->format('d/m/Y H:m:i'),
-                $event->getEndDateTime()->format('d/m/Y H:m:i'),
-                $event->getUser()->__toString(),
-                $event->getEstatus()->__toString()
+                $event->getEvento(),
+                $event->getEmpresa(),
+                $event->getNombre(),
+                $event->getApellidoPaterno(),
+                $event->getApellidoMaterno(),
+                $event->getFecha()->format('d/m/Y H:m:i'),
+                $event->getDireccion(),
+                $event->getMunicipio(),
+                $event->getEstado(),
+                $event->getCP(),
+                $event->getTelefono(),
+                $event->getCelular(),
+                $event->getEmail()
             ];
             $columnValues [] = $value;
         }
+        $today = new \DateTime('now');
+        $fileName = 'listado_eventos_'.$today->format('U');
 
-        return $this->exportExcel($columnNames, $columnValues );
+        return $this->exportExcel($columnNames, $columnValues, $fileName );
     }
 }

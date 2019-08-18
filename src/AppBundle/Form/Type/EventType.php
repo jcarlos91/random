@@ -22,7 +22,6 @@ class EventType extends AbstractType
         $builder
             ->add('evento',TextType::class,[
                 'label' => 'Evento',
-                'placeholder' => 'Evento',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -30,7 +29,6 @@ class EventType extends AbstractType
             ])
             ->add('nombre',TextType::class,[
                 'label' => 'Nombre',
-                'placeholder' => 'Nombre',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -38,7 +36,6 @@ class EventType extends AbstractType
             ])
             ->add('apellidoPaterno',TextType::class,[
                 'label' => 'Apellido Paterno',
-                'placeholder' => 'Apellido Paterno',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -46,7 +43,6 @@ class EventType extends AbstractType
             ])
             ->add('apellidoMaterno',TextType::class,[
                 'label' => 'Apellido Materno',
-                'placeholder' => 'Apellido Materno',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -54,7 +50,6 @@ class EventType extends AbstractType
             ])
             ->add('telefono',TextType::class,[
                 'label' => 'Teléfono',
-                'placeholder' => 'Teléfono',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -62,7 +57,6 @@ class EventType extends AbstractType
             ])
             ->add('celular',TextType::class,[
                 'label' => 'Teléfono Celular',
-                'placeholder' => 'Teléfono Celular',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -70,7 +64,6 @@ class EventType extends AbstractType
             ])
             ->add('email',TextType::class,[
                 'label' => 'Email',
-                'placeholder' => 'Email',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -78,7 +71,6 @@ class EventType extends AbstractType
             ])
             ->add('direccion',TextType::class,[
                 'label' => 'Dirección',
-                'placeholder' => 'Dirección',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -86,7 +78,6 @@ class EventType extends AbstractType
             ])
             ->add('cp',TextType::class,[
                 'label' => 'Código Postal',
-                'placeholder' => 'Código Postal',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -94,7 +85,6 @@ class EventType extends AbstractType
             ])
             ->add('municipio',TextType::class,[
                 'label' => 'Municipio',
-                'placeholder' => 'Municipio',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -102,7 +92,6 @@ class EventType extends AbstractType
             ])
             ->add('estado',TextType::class,[
                 'label' => 'Estado',
-                'placeholder' => 'Estado',
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -110,14 +99,12 @@ class EventType extends AbstractType
             ])
             ->add('empresa',TextType::class,[
                 'label' => 'Empresa',
-                'placeholder' => 'Empresa',
                 'attr' => [
                     'class' => 'form-control'
                 ],
                 'required' =>true
             ])
             ->add('fecha', DateTimeType::class, [
-                'label' => 'Fecha Inicio',
                 'placeholder' => [
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                     'hour' => 'Hour', 'minute' => 'Minute', 'second' => 'Second',

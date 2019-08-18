@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\User as User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -108,12 +109,12 @@ class Evento
     /**
      * @var string
      *
-     * @ORM\Column(name="fecha", type="string", length=255)
+     * @ORM\Column(name="fecha", type="datetime", length=255)
      */
     private $fecha;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_created", referencedColumnName="id")
@@ -122,7 +123,7 @@ class Evento
     private $userCreated;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_modified", referencedColumnName="id", nullable=true)
@@ -164,7 +165,7 @@ class Evento
     /**
      * Set userCreated
      *
-     * @param \AppBundle\Entity\User $userCreated
+     * @param User $userCreated
      *
      * @return Evento
      */
@@ -178,7 +179,7 @@ class Evento
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {
@@ -434,7 +435,7 @@ class Evento
     }
 
     /**
-     * @param string $fecha
+     * @param datetime $fecha
      */
     public function setFecha($fecha)
     {
@@ -471,6 +472,13 @@ class Evento
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombreCompleto(){
+        return $this->getNombre() . " " . $this->getApellidoPaterno() . " ". $this->getApellidoMaterno();
     }
 }
 

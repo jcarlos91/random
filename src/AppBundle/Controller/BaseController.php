@@ -20,9 +20,11 @@ class BaseController extends Controller
     /**
      * @param $columnNames
      * @param $columnValues
+     * @param $fileName
      * @return StreamedResponse
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    public function exportExcel($columnNames, $columnValues){
+    public function exportExcel($columnNames, $columnValues, $fileName){
         $spreadsheet = new Spreadsheet();
         // Get active sheet - it is also possible to retrieve a specific sheet
         $sheet = $spreadsheet->getActiveSheet();
@@ -51,7 +53,7 @@ class BaseController extends Controller
             }
         );
         $response->headers->set('Content-Type', 'application/vnd.ms-excel');
-        $response->headers->set('Content-Disposition', 'attachment;filename="ExportScan.xls"');
+        $response->headers->set('Content-Disposition', 'attachment;filename='.$fileName.'.xls');
         $response->headers->set('Cache-Control','max-age=0');
 
         return $response->send();

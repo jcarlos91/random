@@ -27,7 +27,7 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/admin/login", name="admin_login")
+     * @Route("/login", name="admin_login")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */

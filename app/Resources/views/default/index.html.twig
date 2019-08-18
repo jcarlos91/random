@@ -21,36 +21,37 @@
                     <table data-sortable class="table table-bordered table-hover table-striped tabla-pos f12">
                         <thead>
                         <tr>
-                            <th>Titulo</th>
-                            <th>Observaciones</th>
-                            <th>Fecha Incio</th>
-                            <th>Fecha Fin</th>
-                            <th>Estatus</th>
+                            <th>Evento</th>
+                            <th>Empresa</th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Telefono</th>
+                            <th>Email</th>
                             <th>Usuario Alta</th>
-                            {#<th data-sortable="false">&nbsp;</th>#}
-                            {#<th data-sortable="false">&nbsp;</th>#}
+                            <th data-sortable="false">&nbsp;</th>
+                            <th data-sortable="false">&nbsp;</th>
                         </tr>
                         </thead>
                         {% if events|length > 0 %}
                             <tbody>
                             {% for event in events %}
-                                {# producto \Variv\BackNomiboxBundle\Entity\Producto #}
                                 <tr>
-                                    <td>{{ event.titulo }}</td>
-                                    <td>{{ event.observations }}</td>
-                                    <td>{{ event.startDateTime|date('d-m-Y H:m:i') }}</td>
-                                    <td>{{ event.endDateTime|date('d-m-Y H:m:i') }}</td>
-                                    <td>{{ event.estatus }}</td>
+                                    <td>{{ event.evento }}</td>
+                                    <td>{{ event.empresa }}</td>
+                                    <td>{{ event.getNombreCompleto }}</td>
+                                    <td>{{ event.fecha|date('d-m-Y H:m:i') }}</td>
+                                    <td>{{ event.telefono  }}</td>
+                                    <td>{{ event.email }}</td>
                                     <td>{{ event.user }}</td>
-                                    {#<td><a href="{{ path('back_catalogos_producto_detalleModal', {'id': producto.id}) }}" class="btn btn-primary btn-xs btn-detail">Mostrar</a></td>#}
-                                    {#<td><a href="{{ path('back_catalogos_producto_modificacion', {'id': producto.id}) }}" class="btn btn-blue-2 btn-xs">Editar</a></td>#}
+                                    <td><a href="{{ path('delete_event', {'event': event.id}) }}" class="btn btn-primary btn-xs btn-danger">Eliminar</a></td>
+                                    <td><a href="{{ path('update_event', {'event': event.id}) }}" class="btn btn-success btn-xs">Editar</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         {% else %}
                             <tbody>
                                 <tr>
-                                    <td colspan="6">No hay Eventos</td>
+                                    <td colspan="9">No hay Eventos</td>
                                 </tr>
                             </tbody>
                         {% endif %}
@@ -58,11 +59,13 @@
 
                 </div>
             </div>
-            <div class="col-md-12 col-xs-12" style="padding-bottom:20px;">
-                <div class="text-center">
-                    <input class="btn btn-success" type="button" value="Descargar" style="margin-right:30px;" onclick="window.location='{{ path('export_event') }}';">
+            {% if events|length > 0 %}
+                <div class="col-md-12 col-xs-12" style="padding-bottom:20px;">
+                    <div class="text-center">
+                        <input class="btn btn-success" type="button" value="Descargar" style="margin-right:30px;" onclick="window.location='{{ path('export_event') }}';">
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
     </div>
 </div>
