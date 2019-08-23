@@ -1,0 +1,63 @@
+{% set title = 'Login' %}
+{% block stylesheets %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+    <title>{{ title|default('Inicio') }}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+
+{% endblock %}
+{% block nav %}{% endblock %}
+{% block contenido %}
+    {#<div class="page-container">#}
+        {#<h1>Login</h1>#}
+        {#<form >#}
+            {#<input type="text" name="_username" class="username" placeholder="Username">#}
+            {#<input type="password" name="_password" class="password" placeholder="Password">#}
+            {#<input type="hidden" name="_target_path" value="/" />#}
+            {#<button type="submit">Sign me in</button>#}
+            {#<div class="error"><span>+</span></div>#}
+        {#</form><br>#}
+        {#{% if error %}#}
+            {#<div id="connect">{{ error.message | trans({}, 'security') }} <a class=" login" href="#}{#{ url('') }#}{#">Restablecer Contraseña</a></div>#}
+        {#{% endif %}#}
+        {#<a class="login" href="{{url('fos_user_registration_register')}}">Registrarse</a>#}
+    {#</div>#}
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="{{ asset('frontend/img/icon_front.png') }}" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            <form action="{{ path('front_login_check') }}" method="post">
+                <input type="text" id="login" class="fadeIn second" name="_username" placeholder="Username" required>
+                <input type="password" id="password" class="fadeIn third" name="_password" placeholder="Password" required>
+                <input type="hidden" name="_target_path" value="/" />
+                <input type="submit" class="fadeIn fourth" value="Log In">
+            </form>
+            {% if error %}
+                <div id="error" style="color: #ef4300;">{{ error.message | trans }} </div>
+            {% endif %}
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="login" href="{#{ url('') }#}">Restablecer Contraseña</a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block javascripts %}
+    {#<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
+    {#<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+    {#<script src="{{asset('js/jquery-1.8.2.min.js')}}"></script>#}
+    {#<script src="{{asset('js/supersized.3.2.7.min.js')}}"></script>#}
+    {#<script src="{{asset('js/supersized-init.js')}}"></script>#}
+    {#<script src="{{asset('js/scripts.js')}}"></script>#}
+{% endblock  %}
+<!------ Include the above in your HEAD tag ---------->

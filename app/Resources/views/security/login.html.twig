@@ -10,7 +10,7 @@
 {% block contenido %}
     <div class="page-container">
         <h1>Login</h1>
-        <form action="{{ path('fos_user_security_check') }}" method="post">
+        <form action="{{ path('back_login_check') }}" method="post">
             <input type="text" name="_username" class="username" placeholder="Username">
             <input type="password" name="_password" class="password" placeholder="Password">
             <input type="hidden" name="_target_path" value="/" />
@@ -20,7 +20,7 @@
         {% if error %}
             <div id="connect">{{ error.message | trans({}, 'security') }} <a class=" login" href="{#{ url('') }#}">Restablecer Contraseña</a></div>
         {% endif %}
-        <a class="login" href="{{url('fos_user_registration_register')}}">Registrarse</a>
+        {#<a class="login" href="{{url('fos_user_registration_register')}}">Registrarse</a>#}
     </div>
 {% endblock %}
 {% block sidebar %}{% endblock %}

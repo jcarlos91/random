@@ -145,7 +145,7 @@ button:active {
     border-radius: 8px;
 }
 
-.error span {
+.error div {
     display: inline-block;
     margin-left: 2px;
     font-size: 40px;
@@ -156,7 +156,6 @@ button:active {
     -moz-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
-
 }
 
 .connect {
@@ -178,8 +177,8 @@ button:active {
     -ms-transition: all .2s;
 }
 
-.connect a.facebook { background: url(.././img/facebook.png) center center no-repeat; }
-.connect a.twitter { background: url(.././img/twitter.png) center center no-repeat; }
+/*.connect a.facebook { background: url(.././img/facebook.png) center center no-repeat; }*/
+/*.connect a.twitter { background: url(.././img/twitter.png) center center no-repeat; }*/
 
 .connect a:hover { background-position: center bottom; }
 

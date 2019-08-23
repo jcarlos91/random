@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends BaseController
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/admin", name="homepage")
      * @param Request $request
      * @return Response
      */
@@ -33,7 +33,7 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @Route("/new/event", name="new_event")
+     * @Route("/admin/new/event", name="new_event")
      * @param Request $request
      * @return Response
      * @throws Exception
@@ -101,7 +101,7 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @Route("/delete/{event}/event/", name="delete_event")
+     * @Route("/admin/delete/{event}/event/", name="delete_event")
      * @param Evento $event
      * @return RedirectResponse
      * @throws \Doctrine\DBAL\ConnectionException
@@ -129,7 +129,7 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @Route("/update/{event}/event/", name="update_event")
+     * @Route("/admin/update/{event}/event/", name="update_event")
      * @param Request $request
      * @param $event
      * @return Response
@@ -169,7 +169,7 @@ class DefaultController extends BaseController
     }
 
     /**
-     * @Route("/event/export", name="export_event")
+     * @Route("/admin/event/export", name="export_event")
      */
     public function exportToExcelEvent(){
         /** @var EntityManager $em */
