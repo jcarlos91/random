@@ -5,6 +5,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -51,18 +52,24 @@ class EventType extends AbstractType
             ->add('telefono',TextType::class,[
                 'label' => 'Teléfono',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'pattern' => '[0-9]{2}[0-9]{4}[0-9]{4}',
+                    'title' => 'Ingresa un número telefónico  válido',
+                    'maxlength' => 10
                 ],
                 'required' =>true
             ])
             ->add('celular',TextType::class,[
                 'label' => 'Teléfono Celular',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'pattern' => '[0-9]{2}[0-9]{4}[0-9]{4}',
+                    'title' => 'Ingresa un número telefónico  válido',
+                    'maxlength' => 10
                 ],
                 'required' =>true
             ])
-            ->add('email',TextType::class,[
+            ->add('email',EmailType::class,[
                 'label' => 'Email',
                 'attr' => [
                     'class' => 'form-control'
@@ -79,7 +86,8 @@ class EventType extends AbstractType
             ->add('cp',TextType::class,[
                 'label' => 'Código Postal',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'maxlength' => 5
                 ],
                 'required' =>true
             ])
@@ -93,7 +101,7 @@ class EventType extends AbstractType
             ->add('estado',TextType::class,[
                 'label' => 'Estado',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
                 ],
                 'required' =>true
             ])

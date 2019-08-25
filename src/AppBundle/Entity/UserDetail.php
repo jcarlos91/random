@@ -22,7 +22,7 @@ class UserDetail
     private $id;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var User
      *
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
@@ -35,107 +35,114 @@ class UserDetail
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=255)
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=true)
      */
     private $nombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="apellido_paterno", type="string", length=255)
+     * @ORM\Column(name="apellido_paterno", type="string", length=255, nullable=true)
      */
     private $apellidoPaterno;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="apellido_materno", type="string", length=255)
+     * @ORM\Column(name="apellido_materno", type="string", length=255, nullable=true)
      */
     private $apellidoMaterno;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="curp", type="string", length=255)
+     * @ORM\Column(name="curp", type="string", length=255, nullable=true)
      */
     private $curp;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nss", type="string", length=255)
+     * @ORM\Column(name="nss", type="string", length=255, nullable=true)
      */
     private $nss;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rfc", type="string", length=255)
+     * @ORM\Column(name="rfc", type="string", length=255,nullable=true)
      */
     private $rfc;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="telefono_casa", type="string", length=255)
+     * @ORM\Column(name="telefono_casa", type="string", length=255, nullable=true)
      */
     private $telefonoCasa;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="telefono_celular", type="string", length=255)
+     * @ORM\Column(name="telefono_celular", type="string", length=255, nullable=true)
      */
     private $telefonoCelular;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="calle", type="string", length=255)
+     * @ORM\Column(name="calle", type="string", length=255, nullable=true)
      */
     private $calle;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="no_int", type="integer")
+     * @ORM\Column(name="no_int", type="integer", nullable=true)
      */
     private $noInt;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="no_ext", type="integer")
+     * @ORM\Column(name="no_ext", type="integer", nullable=true)
      */
     private $noExt;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="colonia", type="string", length=255)
+     * @ORM\Column(name="colonia", type="string", length=255, nullable=true)
      */
     private $colonia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="delegacion", type="string", length=255)
+     * @ORM\Column(name="delegacion", type="string", length=255, nullable=true)
      */
     private $delegacion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="municipio", type="string", length=255)
+     * @ORM\Column(name="municipio", type="string", length=255, nullable=true)
      */
     private $municipio;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ciudad", type="string", length=255)
+     * @ORM\Column(name="ciudad", type="string", length=255, nullable=true)
      */
     private $ciudad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cp", type="string", length=5, nullable=true)
+     */
+    private $cp;
 
     /**
      * @var \DateTime
@@ -546,7 +553,7 @@ class UserDetail
      *
      * @return UserDetail
      */
-    public function setFechaNaciento($fechaNacimiento)
+    public function setFechaNacimiento($fechaNacimiento)
     {
         $this->fechaNacimiento = $fechaNacimiento;
 
@@ -558,7 +565,7 @@ class UserDetail
      *
      * @return \DateTime
      */
-    public function getFechaNaciento()
+    public function getFechaNacimiento()
     {
         return $this->fechaNacimiento;
     }
@@ -566,6 +573,22 @@ class UserDetail
     public function __toString()
     {
         return $this->nombre ." " . $this->apellidoPaterno . " ". $this->apellidoMaterno;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCP()
+    {
+        return $this->cp;
+    }
+
+    /**
+     * @param string $cp
+     */
+    public function setCP($cp)
+    {
+        $this->cp = $cp;
     }
 }
 

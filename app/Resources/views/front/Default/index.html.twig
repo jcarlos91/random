@@ -1,7 +1,111 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_frontend.html.twig' %}
 {% set menu_active = 'homepage' %}
 {% set title = 'Listado Eventos' %}
 {% block body %}
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="widget">
+
+                <div class="widget-header">
+                    <h2 class="bold">Mis Eventos</h2>
+                    <div class="additional-btn">
+                        <!--a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+                        <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+                        <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a-->
+                    </div>
+                </div><!-- /.widget-header -->
+
+                <div class="widget-content padding">
+                    <div class="panel-group accordion-toggle" id="accordion-m1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion-m1" href="#accordion1">
+                                        <span class="f16 bold">Resumen de mis Eventos</span>
+                                    </a>
+                                </h4>
+                            </div><!-- /.panel-heading -->
+
+                            <div id="accordion1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="row top-summary">
+                                        <div class="col-lg-2 col-md-6">
+                                            <div class="widget red-1 animated fadeInDown">
+                                                <div class="widget-content padding">
+                                                    <div class="widget-icon">
+                                                        <i class="fa fa-caret-square-o-down"></i>
+                                                    </div>
+                                                    <div class="text-box">
+                                                        <p class="maindata"><b>Numero de eventos creados </b> </p>
+                                                            <h2><span class="animate-number" data-value="{{ numEvents|length }}" data-duration="2000">0</span></h2>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.col-lg-2 -->
+                                    </div>
+                                </div>
+                            </div><!-- /.accordion4 -->
+                        </div><!-- /.panel -->
+                    </div><!-- /.panel-group -->
+                    <h3>Eventos</h3>
+                    <div class="panel-group accordion-toggle" id="accordion-m2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion-m2" href="#accordion2">
+                                        <span class="f16 bold">Mis Eventos</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="accordion2" class="panel-collapse collapse in">
+                                <div class="panel-body">
+
+                                    <div class="table-responsive">
+
+                                        <table class="table table-bordered table-hover table-striped tabla-pos f11">
+                                            <thead>
+                                            <tr style="background-color:#eee;">
+                                                <th>Nombre</th>
+                                                <th>Empresa</th>
+                                                <th>Fecha</th>
+                                                <th>Telefono</th>
+                                                <th>Telefono Celular</th>
+                                                <th>Email</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            {% for event in numEvents %}
+                                                <tr>
+                                                    <td>{{ event.nombre }} {{ event.apellidoPaterno }} {{ event.apellidoMaterno }}</td>
+                                                    <td>{{ event.empresa }}</td>
+                                                    <td>{{ event.fecha|date('d/m/Y') }}</td>
+                                                    <td>{{ event.telefono }}</td>
+                                                    <td>{{ event.celular }}</td>
+                                                    <td>{{ event.email }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+
+                                    </div><!-- /.table-responsive -->
+
+                                </div><!-- /.panel-body -->
+                            </div><!-- /#accordion4 -->
+                        </div><!-- /.panel -->
+
+                    </div><!-- /.panel-group -->
+                </div><!-- /.widget-content -->
+
+            </div><!-- /.widget -->
+
+        </div><!-- /.col-md-12 -->
+
+    </div><!-- /.row -->
 
 {% endblock %}
 

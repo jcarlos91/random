@@ -21,11 +21,11 @@ class User extends BaseUser
 
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var UserDetail
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\UserDetail", mappedBy="userId")
+     * @ORM\OneToOne(targetEntity="UserDetail", mappedBy="userId", cascade={"persist"})
      */
-    protected $userdetail;
+    protected $userDetail;
 
     public function __construct()
     {
@@ -34,18 +34,19 @@ class User extends BaseUser
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return UserDetail
      */
-    public function getUserdetail()
+    public function getUserDetail()
     {
-        return $this->userdetail;
+        return $this->userDetail;
     }
 
     /**
-     * @param \Doctrine\Common\Collections\Collection $userdetail
+     * @param UserDetail $userDetail
      */
-    public function setUserdetail($userdetail)
+    public function setUserDetail(UserDetail $userDetail)
     {
-        $this->userdetail = $userdetail;
+        $this->userDetail = $userDetail;
     }
+
 }

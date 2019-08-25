@@ -17,55 +17,69 @@
                         <span>Eventos</span>
                     </a>
                 </li>
-                {#<li class='has_sub'>#}
-                    {#<a href='javascript:void(0);'><i class='fa fa-file-text-o'></i>#}
-                        {#<span>Tr&aacute;mites</span>#}
-                        {#<span class="pull-right"><i class="fa fa-angle-down"></i></span>#}
-                    {#</a>#}
-                    {#<ul>#}
-                        {#<li class='has_sub'>#}
-                            {#<a href='javascript:void(0);'><i class='fa fa-book'></i>#}
-                                {#<span>Auxiliares y Reportes Financieros</span>#}
-                                {#<span class="pull-right"><i class="fa fa-angle-down"></i></span>#}
-                            {#</a>#}
-                            {#<ul>#}
-                                {#<li>#}
-                                    {#<a href='#' {{ menu_active == 'contabilidad-reporte-auxiliares' ? cls_active|raw: ''}}>#}
-                                        {#<span>Reporte de Auxiliares</span>#}
-                                    {#</a>#}
-                                {#</li>#}
+                <li class='has_sub'>
+                    <a href='javascript:void(0);'><i class='fa fa-users'></i>
+                        <span>Usuarios</span>
+                        <span class="pull-right"><i class="fa fa-angle-down"></i></span>
+                    </a>
+                    <ul>
+                        <li class='has_sub'>
+                        <li>
+                            <a href='{{ path('back_user_list') }}' {{ menu_active == 'Usuarios-Listado' ? cls_active|raw: ''}}>
+                                <span>Listado</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+{#                <li class='has_sub'>#}
+{#                    <a href='javascript:void(0);'><i class='fa fa-users'></i>#}
+{#                        <span>Usuarios</span>#}
+{#                        <span class="pull-right"><i class="fa fa-angle-down"></i></span>#}
+{#                    </a>#}
+{#                    <ul>#}
+{#                        <li class='has_sub'>#}
+{#                            <a href='javascript:void(0);'><i class='fa fa-book'></i>#}
+{#                                <span>Auxiliares y Reportes Financieros</span>#}
+{#                                <span class="pull-right"><i class="fa fa-angle-down"></i></span>#}
+{#                            </a>#}
+{#                            <ul>#}
+{#                                <li>#}
+{#                                    <a href='#' {{ menu_active == 'contabilidad-reporte-auxiliares' ? cls_active|raw: ''}}>#}
+{#                                        <span>Reporte de Auxiliares</span>#}
+{#                                    </a>#}
+{#                                </li>#}
 
-                                {#<li>#}
-                                    {#<a href='#'{{ menu_active == 'contabilidad-balanza-comprobacion' ? cls_active|raw: ''}}>#}
-                                        {#<span>Balanza de Comprobación</span>#}
-                                    {#</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a href='#' {{ menu_active == 'contabilidad-balance-general' ? cls_active|raw: ''}}>#}
-                                        {#<span>Balance General</span>#}
-                                    {#</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a href='#' {{ menu_active == 'contabilidad-estado-resultado' ? cls_active|raw: ''}}>#}
-                                        {#<!--span>Estado de Resultados</span-->#}
-                                        {#<span>Estado de Actividades</span>#}
-                                    {#</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a href='#'{{ menu_active == 'contabilidad-cedula-intereses' ? cls_active|raw: ''}}>#}
-                                        {#<span>C&eacute;dula de Intereses</span>#}
-                                    {#</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a href='#' {{ menu_active == 'contabilidad-flujo-efectivo' ? cls_active|raw: ''}}>#}
-                                        {#<span>Estado de Flujo de Efectivo</span>#}
-                                    {#</a>#}
-                                {#</li>#}
+{#                                <li>#}
+{#                                    <a href='#'{{ menu_active == 'contabilidad-balanza-comprobacion' ? cls_active|raw: ''}}>#}
+{#                                        <span>Balanza de Comprobación</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href='#' {{ menu_active == 'contabilidad-balance-general' ? cls_active|raw: ''}}>#}
+{#                                        <span>Balance General</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href='#' {{ menu_active == 'contabilidad-estado-resultado' ? cls_active|raw: ''}}>#}
+{#                                        <!--span>Estado de Resultados</span-->#}
+{#                                        <span>Estado de Actividades</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href='#'{{ menu_active == 'contabilidad-cedula-intereses' ? cls_active|raw: ''}}>#}
+{#                                        <span>C&eacute;dula de Intereses</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href='#' {{ menu_active == 'contabilidad-flujo-efectivo' ? cls_active|raw: ''}}>#}
+{#                                        <span>Estado de Flujo de Efectivo</span>#}
+{#                                    </a>#}
+{#                                </li>#}
 
-                            {#</ul>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</li>#}
+{#                            </ul>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </li>#}
             </ul>
 
             <div class="clearfix"></div>

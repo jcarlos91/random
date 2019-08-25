@@ -1,0 +1,66 @@
+{% extends '::base.html.twig' %}
+{% set menu_active = 'Usuarios-Listado' %}
+{% set title = 'Listado Usuarios' %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12 portlets">
+            <div class="widget">
+                <div class="widget-header transparent">
+                    <div style="float:right; position:relative; right:30px; z-index:2;">
+                        <a href="{{ path('back_user_new') }}" class="btn-sm btn-dark-1">Nuevo Usuario</a>
+                    </div>
+                    <h2 class="bold">{{ title }}</h2>
+                </div>
+
+                <div class="widget-content padding">
+                    <div class="table-responsive">
+                        <table data-sortable class="table table-bordered table-hover table-striped tabla-pos f12">
+                            <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Celular</th>
+                                <th data-sortable="false">Habilita/Deshabilita&nbsp;</th>
+                                <th data-sortable="false">Editar</th>
+                            </tr>
+                            </thead>
+                            {% if users|length > 0 %}
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ user.userdetail.nombre }} {{ user.userdetail.apellidoPaterno }} {{ user.userdetail.apellidoMaterno }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.userdetail.telefonoCelular }}</td>
+                                        {% if user.enabled %}
+                                            <td><a href="{{ path('back_user_status', {'user': user.id, 'status': 'disabled'}) }}" class="btn btn-danger btn-xs">Desactivar</a></td>
+                                        {% else %}
+                                            <td><a href="{{ path('back_user_status', {'user': user.id,'status': 'enable'}) }}" class="btn btn-primary btn-xs">Activar</a></td>
+                                        {% endif %}
+                                        <td><a href="{{ path('back_user_edit', {'user': user.id}) }}" class="btn btn-success btn-xs">Editar</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            {% else %}
+                                <tbody>
+                                <tr>
+                                    <td colspan="9">No hay Usuarios</td>
+                                </tr>
+                                </tbody>
+                            {% endif %}
+                        </table>
+
+                    </div>
+                </div>
+                {% if users|length > 0 %}
+                    <div class="col-md-12 col-xs-12" style="padding-bottom:20px;">
+                        <div class="text-center">
+                            <input class="btn btn-success" type="button" value="Descargar" style="margin-right:30px;" onclick="window.location='{{ path('back_export_users') }}';">
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

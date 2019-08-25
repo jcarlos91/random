@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+{% set menu_active = 'Usuarios-Listado' %}
+{% block body %}
+
+    <div class="row">
+
+        <div class="col-md-12 portlets">
+
+            <div class="widget">
+                <div class="widget-header transparent">
+                    <h2><strong>{{ title }}</strong></h2>
+                </div>
+
+                <div class="widget-content padding">
+
+                    {{form_start(form, {'attr': {'class': 'form-horizontal', 'id': 'formulario'} })}}
+                    {{form_errors(form)}}
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.username) }}
+                                {{ form_widget(form.username) }}
+                                {{ form_errors(form.username) }}
+                                <div id="resp"></div>
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.email) }}
+                                {{ form_widget(form.email) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.plainPassword.first) }}
+                                {{ form_widget(form.plainPassword.first) }}
+                                {{ form_errors(form.plainPassword.first) }}
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.plainPassword.second) }}
+                                {{ form_widget(form.plainPassword.second) }}
+                                {{ form_errors(form.plainPassword.second) }}
+                            </div>
+
+
+                            <div class="col-md-4 col-xs-12">
+                                {{ form_label(form.userDetail.nombre) }}
+                                {{ form_widget(form.userDetail.nombre) }}
+                                {{ form_errors(form.userDetail.nombre) }}
+                            </div>
+
+                            <div class="col-md-4 col-xs-12">
+                                {{ form_label(form.userDetail.apellidoPaterno) }}
+                                {{ form_widget(form.userDetail.apellidoPaterno) }}
+                                {{ form_errors(form.userDetail.apellidoPaterno) }}
+                            </div>
+
+                            <div class="col-md-4 col-xs-12">
+                                {{ form_label(form.userDetail.apellidoMaterno) }}
+                                {{ form_widget(form.userDetail.apellidoMaterno) }}
+                                {{ form_errors(form.userDetail.apellidoMaterno) }}
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.userDetail.curp) }}
+                                {{ form_widget(form.userDetail.curp) }}
+                                {{ form_errors(form.userDetail.curp) }}
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.userDetail.nss) }}
+                                {{ form_widget(form.userDetail.nss) }}
+                                {{ form_errors(form.userDetail.nss) }}
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.userDetail.rfc) }}
+                                {{ form_widget(form.userDetail.rfc) }}
+                                {{ form_errors(form.userDetail.rfc) }}
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.userDetail.fechaNacimiento) }}
+                                {{ form_widget(form.userDetail.fechaNacimiento) }}
+                                {{ form_errors(form.userDetail.fechaNacimiento) }}
+                            </div>
+
+                            <div class="col-md-5 col-xs-12">
+                                {{ form_label(form.userDetail.calle) }}
+                                {{ form_widget(form.userDetail.calle) }}
+                                {{ form_errors(form.userDetail.calle) }}
+                            </div>
+
+                            <div class="col-md-5 col-xs-12">
+                                {{ form_label(form.userDetail.colonia) }}
+                                {{ form_widget(form.userDetail.colonia) }}
+                                {{ form_errors(form.userDetail.colonia) }}
+                            </div>
+
+                            <div class="col-md-1 col-xs-12">
+                                {{ form_label(form.userDetail.noInt) }}
+                                {{ form_widget(form.userDetail.noInt) }}
+                                {{ form_errors(form.userDetail.noInt) }}
+                            </div>
+
+                            <div class="col-md-1 col-xs-12">
+                                {{ form_label(form.userDetail.noExt) }}
+                                {{ form_widget(form.userDetail.noExt) }}
+                                {{ form_errors(form.userDetail.noExt) }}
+                            </div>
+
+
+                            <div class="col-md-4 col-xs-12">
+                                {{ form_label(form.userDetail.delegacion) }}
+                                {{ form_widget(form.userDetail.delegacion) }}
+                                {{ form_errors(form.userDetail.delegacion) }}
+                            </div>
+
+                            <div class="col-md-4 col-xs-12">
+                                {{ form_label(form.userDetail.municipio) }}
+                                {{ form_widget(form.userDetail.municipio) }}
+                                {{ form_errors(form.userDetail.municipio) }}
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                {{ form_label(form.userDetail.ciudad) }}
+                                {{ form_widget(form.userDetail.ciudad) }}
+                                {{ form_errors(form.userDetail.ciudad) }}
+                            </div>
+
+                            <div class="col-md-1 col-xs-12">
+                                {{ form_label(form.userDetail.cp) }}
+                                {{ form_widget(form.userDetail.cp) }}
+                                {{ form_errors(form.userDetail.cp) }}
+                            </div>
+
+                            <div class="col-md-2 col-xs-12">
+                                {{ form_label(form.userDetail.telefonoCasa) }}
+                                {{ form_widget(form.userDetail.telefonoCasa) }}
+                                {{ form_errors(form.userDetail.telefonoCasa) }}
+                            </div>
+
+                            <div class="col-md-2 col-xs-12">
+                                {{ form_label(form.userDetail.telefonoCelular) }}
+                                {{ form_widget(form.userDetail.telefonoCelular) }}
+                                {{ form_errors(form.userDetail.telefonoCelular) }}
+                            </div>
+
+                            <div class="col-md-2 col-xs-12">
+                                {{ form_label(form.roles) }}
+                                {{ form_widget(form.roles) }}
+                                {{ form_errors(form.roles) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear padt"><hr></div>
+
+                    <div class="col-md-12 col-xs-12" style="padding-bottom:20px;">
+                        <div class="text-center">
+                            <input class="btn btn-default" type="button" value="Regresar" style="margin-right:30px;" onclick="window.location='{{ path('back_user_list') }}';">
+                            {{ form_widget(form.save) }}
+                        </div>
+                    </div>
+                    {{form_end(form)}}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+{% endblock %}

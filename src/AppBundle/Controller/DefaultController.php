@@ -6,6 +6,7 @@ use AppBundle\Entity\Citas;
 use AppBundle\Entity\Estatus;
 use AppBundle\Entity\Evento;
 use AppBundle\Form\Type\EventType;
+use Doctrine\DBAL\ConnectionException;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -104,7 +105,7 @@ class DefaultController extends BaseController
      * @Route("/admin/delete/{event}/event/", name="delete_event")
      * @param Evento $event
      * @return RedirectResponse
-     * @throws \Doctrine\DBAL\ConnectionException
+     * @throws ConnectionException
      */
     public function deleteEventAction(Evento $event)
     {
@@ -131,8 +132,9 @@ class DefaultController extends BaseController
     /**
      * @Route("/admin/update/{event}/event/", name="update_event")
      * @param Request $request
-     * @param $event
+     * @param Evento $event
      * @return Response
+     * @throws ConnectionException
      */
     public function updateEventAction(Request $request, Evento $event){
 
@@ -150,11 +152,12 @@ class DefaultController extends BaseController
                         $em->getConnection()->beginTransaction();
                         $event->setUserModified($this->getUser());
                         $event->setDateModified(new \DateTime('now'));
-                        $em->getConnection()->commit();
                         $em->flush();
+                        $em->getConnection()->commit();
                         $this->addFlash('success','Evento actualizado correctamente');
                         return $this->redirectToRoute('homepage');
                     }catch (Exception $e){
+                        $em->getConnection()->rollBack();
                         $this->addFlash(
                             'danger', $e->getMessage()
                         );

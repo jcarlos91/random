@@ -1,5 +1,5 @@
-{% extends 'base.html.twig' %}
-{% set menu_active = 'homepage' %}
+{% extends 'base_frontend.html.twig' %}
+{% set menu_active = 'front-evento-nuevo' %}
 {% block body %}
 
     <div class="row">
@@ -8,7 +8,7 @@
 
             <div class="widget">
                 <div class="widget-header transparent">
-                    <h2><strong>Agenda Cita</strong></h2>
+                    <h2><strong>Nuevo Evento</strong></h2>
                 </div>
 
                 <div class="widget-content padding">
@@ -103,7 +103,7 @@
 
                     <div class="col-md-12 col-xs-12" style="padding-bottom:20px;">
                         <div class="text-center">
-                            <input class="btn btn-default" type="button" value="Regresar" style="margin-right:30px;" onclick="window.location='{{ path('homepage') }}';">
+                            <input class="btn btn-default" type="button" value="Regresar" style="margin-right:30px;" onclick="window.location='{{ path('front_homepage') }}';">
                             {{ form_widget(form.save) }}
                         </div>
                     </div>
