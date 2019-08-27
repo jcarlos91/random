@@ -13,7 +13,7 @@
         <div id="sidebar-menu">
             <ul>
                 <li class=''>
-                    <a href="#"{{ menu_active == 'homepage' ? cls_active|raw : '' }}><i class='fa fa-home'></i>
+                    <a href="{{ path('front_homepage') }}"{{ menu_active == 'homepage' ? cls_active|raw : '' }}><i class='fa fa-home'></i>
                         <span>Home</span>
                     </a>
                 </li>
