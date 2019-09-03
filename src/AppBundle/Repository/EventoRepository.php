@@ -10,4 +10,34 @@ namespace AppBundle\Repository;
  */
 class EventoRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $startDate
+     * @param $endDate
+     * @param $user
+     * @return array
+     */
+    public function getEventByDates($startDate, $endDate, $user){
+        $q = $this->createQueryBuilder('e')
+            ->join('e.userCreated','u')
+            ->where('e.delete = 0')
+        ;
+
+        if($startDate != null && $endDate != null){
+            $q
+                ->andWhere($q->expr()->between('e.dateCreated',':startDate', ':endDate'))
+                ->setParameter('startDate',$startDate->format('Y-m-d'))
+                ->setParameter('endDate', $endDate->format('Y-m-d'))
+            ;
+        }
+
+        if($user != null){
+            $q
+                ->andWhere('e.userCreated = :user')
+                ->setParameter('user',$user)
+            ;
+        }
+
+        return $q->getQuery()->getResult();
+    }
+
 }

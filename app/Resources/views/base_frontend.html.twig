@@ -378,6 +378,11 @@
             $($(this).data('target')).remove();
             refresh(form);
         });
+
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
     }
     attachEvents();
 
