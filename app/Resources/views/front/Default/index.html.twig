@@ -39,8 +39,22 @@
                                                         <i class="fa fa-dot-circle-o"></i>
                                                     </div>
                                                     <div class="text-box">
-                                                        <p class="maindata"><b>Numero de eventos creados </b> </p>
+                                                        <p class="maindata"><b>Numero de registros creados </b> </p>
                                                             <h2><span class="animate-number" data-value="{{ CountEvents|length }}" data-duration="2000">0</span></h2>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.col-lg-2 -->
+                                        <div class="col-lg-2 col-md-6">
+                                            <div class="widget green-1 animated fadeInDown">
+                                                <div class="widget-content padding">
+                                                    <div class="widget-icon">
+                                                        <i class="fa fa-file"></i>
+                                                    </div>
+                                                    <div class="text-box">
+                                                        <p class="maindata"><b>Numero de registros invitados </b> </p>
+                                                        <h2><span class="animate-number" data-value="{{ numRecordInvited|length }}" data-duration="2000">0</span></h2>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                 </div>
@@ -51,13 +65,13 @@
                             </div><!-- /.accordion4 -->
                         </div><!-- /.panel -->
                     </div><!-- /.panel-group -->
-                    <h3>Eventos</h3>
+                    <h3>{{ 'Records'|trans }}</h3>
                     <div class="panel-group accordion-toggle" id="accordion-m2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion-m2" href="#accordion2">
-                                        <span class="f16 bold">Mis Eventos</span>
+                                        <span class="f16 bold">{{ 'My Events'|trans }}</span>
                                     </a>
                                 </h4>
                             </div>
@@ -87,6 +101,51 @@
                                                     <td>{{ event.telefono }}</td>
                                                     <td>{{ event.celular }}</td>
                                                     <td>{{ event.email }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+
+                                    </div><!-- /.table-responsive -->
+
+                                </div><!-- /.panel-body -->
+                            </div><!-- /#accordion4 -->
+                        </div><!-- /.panel -->
+
+                    </div><!-- /.panel-group -->
+
+                    <h3>{{ 'Records Invited'|trans}}</h3>
+                    <div class="panel-group accordion-toggle" id="accordion-m2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion-m2" href="#accordion2">
+                                        <span class="f16 bold">{{ 'Records Invited'|trans}}</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="accordion2" class="panel-collapse collapse in">
+                                <div class="panel-body">
+
+                                    <div class="table-responsive">
+
+                                        <table class="table table-bordered table-hover table-striped tabla-pos f11">
+                                            <thead>
+                                            <tr style="background-color:#eee;">
+                                                <th>Nombre Evento</th>
+                                                <th>Nombre invitado</th>
+                                                <th>Fecha</th>
+                                                <th>Email</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            {% for record in recordsInvited %}
+                                                <tr>
+                                                    <td>{{ record.nombreEvento }}</td>
+                                                    <td>{{ record.nombreInvitado }}</td>
+                                                    <td>{{ record.fecha|date('d/m/Y') }}</td>
+                                                    <td>{{ record.email }}</td>
                                                 </tr>
                                             {% endfor %}
                                             </tbody>

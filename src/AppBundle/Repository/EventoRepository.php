@@ -11,16 +11,26 @@ namespace AppBundle\Repository;
 class EventoRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
+     * @param $company
+     * @param $email
      * @param $startDate
      * @param $endDate
      * @param $user
      * @return array
      */
-    public function getEventByDates($startDate, $endDate, $user){
+    public function getEventByDates($company, $email, $startDate, $endDate, $user){
         $q = $this->createQueryBuilder('e')
             ->join('e.userCreated','u')
             ->where('e.delete = 0')
         ;
+
+        if($company != null){
+            $q->andWhere($q->expr()->like('e.empresa', $q->expr()->literal('%' . $company . '%')));
+        }
+
+        if($email != null){
+            $q->andWhere($q->expr()->like('e.email', $q->expr()->literal('%'. $email .'%')));
+        }
 
         if($startDate != null && $endDate != null){
             $q

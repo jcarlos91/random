@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/invited/styles.css') }}">
+    <title>Nuevo Registro Invitado</title>
+</head>
+
+<body>
+
+    <div class="container" id="advanced-search-form">
+        <h2>Nuevo Registro Invitado</h2>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="form-group">
+            {{ form_label(form.evento) }}
+            {{ form_errors(form.evento) }}
+            {{ form_widget(form.evento) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.invited) }}
+            {{ form_errors(form.invited) }}
+            {{ form_widget(form.invited) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.email) }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.fecha) }}
+            {{ form_errors(form.fecha) }}
+            {{ form_widget(form.fecha) }}
+
+        </div>
+        <div class="col-md-12 col-xs-12" style="padding-bottom:20px;">
+            <div class="text-center">
+                {{ form_widget(form.save) }}
+                <button class="btn btn-info" onclick="window.location='{{ path('front_initial_page') }}'">Regresar</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</body>
+</html>

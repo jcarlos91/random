@@ -1,12 +1,13 @@
 <?php
 
 namespace AppBundle\Form\Type;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * Created by PhpStorm.
@@ -110,14 +111,14 @@ class EventType extends AbstractType
                 ],
                 'required' =>true
             ])
-            ->add('fecha', DateTime::class, [
+            ->add('fecha', DateType::class, [
                 'placeholder' => [
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                     'hour' => 'Hour', 'minute' => 'Minute', 'second' => 'Second',
                 ],
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'js-datepicker form-control'
                 ],
                 'required' =>false
             ])

@@ -13,6 +13,10 @@ front_logout:
 front_login_check:
     path: /index/login_check
 
+front_initial_page:
+   path: /index/inicial/
+   defaults: { _controller: AppBundle:Security:initialPage }
+
 ## Login BackEnd ###
 back_login:
     path: /admin/login

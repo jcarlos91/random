@@ -105,8 +105,13 @@ class SecurityController extends BaseController
             'error' => $error,
             'csrf_token' => $csrfToken,
         ]);
-
-
     }
 
+
+    /**
+     * @return Response
+     */
+    public function initialPageAction(){
+        return $this->render(':front/Default:initial.html.twig');
+    }
 }

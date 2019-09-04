@@ -1,5 +1,5 @@
 {% extends 'base_frontend.html.twig' %}
-{% set menu_active = 'front_registros_list' %}
+{% set menu_active = 'front_guest_list' %}
 {% block body %}
     <div class="row">
 
@@ -24,9 +24,9 @@
                             <div class="form-group">
 
                                 <div class="col-md-3 col-xs-12">
-                                    {{ form_label(form.company) }}
-                                    {{ form_widget(form.company) }}
-                                    {{ form_errors(form.company) }}
+                                    {{ form_label(form.evento) }}
+                                    {{ form_widget(form.evento) }}
+                                    {{ form_errors(form.evento) }}
                                 </div>
 
                                 <div class="col-md-3 col-xs-12">
@@ -49,7 +49,7 @@
 
                                 <div class="col-md-12 col-xs-12" style="padding-bottom:20px;">
                                     <div class="text-center">
-                                    {{ form_widget(form.search) }}
+                                        {{ form_widget(form.search) }}
                                     </div>
                                 </div>
                             </div>
@@ -72,28 +72,20 @@
                         <table data-sortable class="table table-bordered table-hover table-striped tabla-pos f12">
                             <thead>
                             <tr>
-                                <th>Evento</th>
-                                <th>Empresa</th>
-                                <th>Nombre</th>
-                                <th>Fecha</th>
-                                <th>Telefono</th>
+                                <th>Nombre Evento</th>
+                                <th>Nombre Inivtado</th>
                                 <th>Email</th>
-                                <th>Usuario Alta</th>
-                                <th data-sortable="false">&nbsp;</th>
+                                <th>Fecha</th>
                             </tr>
                             </thead>
                             {% if events|length > 0 %}
                                 <tbody>
                                 {% for event in events %}
                                     <tr>
-                                        <td>{{ event.evento }}</td>
-                                        <td>{{ event.empresa }}</td>
-                                        <td>{{ event.getNombreCompleto }}</td>
-                                        <td>{{ event.fecha|date('d-m-Y H:m:i') }}</td>
-                                        <td>{{ event.telefono  }}</td>
+                                        <td>{{ event.nombreEvento }}</td>
+                                        <td>{{ event.nombreInvitado }}</td>
                                         <td>{{ event.email }}</td>
-                                        <td>{{ event.user }}</td>
-                                        <td><a href="{#{ path('update_event', {'event': event.id}) }#}" class="btn btn-success btn-xs">Editar</a></td>
+                                        <td>{{ event.fecha|date('d-m-Y H:m:i') }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -118,7 +110,7 @@
 
                     <div class="col-md-6">
                         <div class="text-center">
-                            <input class="btn btn-success" type="button" value="Descargar" style="margin-right:30px;" onclick="window.location='{{ path('front_export_record_list') }}';" {% if events|length == 0 %} disabled {% endif %}>
+                            <input class="btn btn-success" type="button" value="Descargar" style="margin-right:30px;" onclick="window.location='{{ path('front_export_record_list_invited') }}';" {% if events|length == 0 %} disabled {% endif %}>
                         </div>
                     </div>
                 </div>

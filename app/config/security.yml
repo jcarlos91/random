@@ -22,6 +22,14 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        initial_ruote:
+            pattern: /index/inicial/
+            security: false
+
+        invited_redister_event:
+            pattern: /index/inicial/nuevo/registro
+            security: false
+
         admin:
             pattern: ^/admin
             anonymous: ~
@@ -52,6 +60,7 @@ security:
     access_control:
         - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/index/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/index/inicial/page, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }

@@ -1,0 +1,60 @@
+{% set title = 'Inicial' %}
+{% block stylesheets %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+    <title>{{ title|default('Inicio') }}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+
+{% endblock %}
+{% block nav %}{% endblock %}
+{% block contenido %}
+    <div class="wrapper fadeInDown">
+        {# Flash messages #}
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                {% if message is iterable%}
+                    {% for m in message %}
+                        <div class="alert alert-{{ type }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            {{ m.message|raw|trans|raw }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-{{ type }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ message|raw|trans|raw }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="{{ asset('frontend/img/icon_front.png') }}" id="icon" alt="User Icon" />
+            </div>
+
+            <div style="margin: 30px">
+                <button class="btn btn-info" onclick="window.location='{{ path('front_homepage') }}'">{{ 'Log In'|trans }}</button>
+                <button class="btn btn-danger" onclick="window.location='{{ path('front_invited_register_event') }}'">{{ 'Invited'|trans }}</button>
+            </div>
+
+            <div id="formFooter"/>
+
+        </div>
+    </div>
+{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".close").click(function(){
+                $(".alert").hide();
+            });
+        });
+    </script>
+{% endblock  %}
+<!------ Include the above in your HEAD tag ---------->

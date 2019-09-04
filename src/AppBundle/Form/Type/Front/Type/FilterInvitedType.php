@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: charly
- * Date: 3/09/19
- * Time: 05:08 PM
+ * Date: 4/09/19
+ * Time: 01:59 PM
  */
 
 namespace AppBundle\Form\Type\Front\Type;
@@ -16,13 +16,13 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class FilterType extends AbstractType
+class FilterInvitedType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('company', TextType::class,[
-                'label' => 'Empresa',
+            ->add('evento',TextType::class,[
+                'label' => 'Nombre Evento',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control'
