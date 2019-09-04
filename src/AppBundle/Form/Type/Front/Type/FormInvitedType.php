@@ -51,7 +51,7 @@ class FormInvitedType extends AbstractType
                 'attr' => [
                     'class' => 'js-datepicker form-control'
                 ],
-                'required' =>false
+                'required' =>true
             ])
             ->add('save', SubmitType::class,[
                 'label' => 'Guardar',

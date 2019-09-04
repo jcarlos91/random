@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Swift_SmtpTransport;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -57,7 +58,34 @@ class BaseController extends Controller
         $response->headers->set('Cache-Control','max-age=0');
 
         return $response->send();
+    }
 
+    public function sendEmail($email, $name ){
+        // Create the Transport
+        $transport = (new Swift_SmtpTransport(
+            $this->get('service_container')->getParameter('mailer_host'),
+            $this->get('service_container')->getParameter('mailer_port'),
+            $this->get('service_container')->getParameter('mailer_encryption')
+        ))
+            ->setUsername($this->get('service_container')->getParameter('mailer_user'))
+            ->setPassword($this->get('service_container')->getParameter('mailer_password'))
+        ;
+
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $from = $this->get('service_container')->getParameter('mailer_user');
+        $message = new \Swift_Message($this->get('translator')->trans('Register'));
+        $message
+            ->setFrom($from)
+            ->setTo($email)
+            ->setBody(
+                $this->renderView('front/Default/email_confirmation.html.twig',[
+                    'name' => $name,
+                ]),
+                'text/html'
+            )
+        ;
+
+        $mailer->send($message);
     }
 
 }

@@ -237,8 +237,9 @@ class FrontController extends BaseController
                     $invitedName = $data['invited'];
                     $email = $data['email'];
                     $date = $data['fecha'];
-                    $em->getConnection()->beginTransaction();
                     try {
+                        $em->getConnection()->beginTransaction();
+                        $em->getConnection()->setAutoCommit(false);
                         $invitedRegister = new RegistroInvitado();
                         $invitedRegister->setNombreEvento($eventName);
                         $invitedRegister->setNombreInvitado($invitedName);
@@ -251,6 +252,7 @@ class FrontController extends BaseController
                         $this->addFlash(
                             'success', $this->get('translator')->trans('Register created successful')
                         );
+                        $this->sendEmail($email,$invitedName);
                         return $this->redirectToRoute('front_initial_page');
                     }catch (Exception $e) {
                         $em->getConnection()->rollBack();
