@@ -3,7 +3,7 @@
 /var/bootstrap.php.cache
 /var/cache/*
 /var/sessions/*
-/var/config/parameters.yml
+/app/config/parameters.yml
 /var/logs/*
 /var/phpunit.xml
 /build/
