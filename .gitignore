@@ -37,3 +37,6 @@ nb-configuration.xml
 
 # workspace files are user-specific
 *.sublime-workspace
+
+conposer.lock
+web/app_dev.php

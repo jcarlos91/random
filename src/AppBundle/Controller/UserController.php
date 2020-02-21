@@ -62,6 +62,7 @@ class UserController extends BaseController
                         $em->getConnection()->beginTransaction();
                         $user->addRole($role);
                         $user->setEnabled(true);
+//                        $user->setPlainPassword($data['p'])
                         $em->persist($user);
                         $user->getUserDetail()->setUserId($user);
                         $em->flush();
@@ -103,10 +104,14 @@ class UserController extends BaseController
                 $save = $form->get('save')->isClicked();
                 if ($save) {
                     try {
+                        $userManager = $this->container->get('fos_user.user_manager');
+                        $data = $form->getData();
                         $role = $form->get('roles')->getData();
                         $em->getConnection()->beginTransaction();
                         $user->addRole($role);
+                        $user->setPlainPassword($data->getPlainPassword());
                         $user->setEnabled(true);
+                        $userManager->updateUser($user, true);
                         $em->persist($user);
                         $user->getUserDetail()->setUserId($user);
                         $em->flush();

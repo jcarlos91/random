@@ -50,4 +50,19 @@ class EventoRepository extends \Doctrine\ORM\EntityRepository
         return $q->getQuery()->getResult();
     }
 
+    public function getEvents($user, $dateStart, $dateEnd){
+        $q = $this->createQueryBuilder('e')
+            ->where('e.delete = 0')
+            ->andWhere('e.userCreated = :user')
+            ->setParameter('user',$user)
+        ;
+
+        $q
+            ->andWhere($q->expr()->between('e.dateCreated',':startDate', ':endDate'))
+            ->setParameter('startDate',$dateStart)
+            ->setParameter('endDate',$dateEnd)
+        ;
+
+        return $q->getQuery()->getResult();
+    }
 }

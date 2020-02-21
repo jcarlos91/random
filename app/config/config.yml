@@ -18,7 +18,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
     session:
@@ -83,3 +83,12 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+
+fos_oauth_server:
+    db_driver: orm       # Drivers available: orm, mongodb, or propel
+    client_class:        AppBundle\Entity\Client
+    access_token_class:  AppBundle\Entity\AccessToken
+    refresh_token_class: AppBundle\Entity\RefreshToken
+    auth_code_class:     AppBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_provider.username

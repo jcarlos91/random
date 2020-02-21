@@ -18,7 +18,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Fungio\GoogleCalendarBundle\FungioGoogleCalendarBundle()
+            new Fungio\GoogleCalendarBundle\FungioGoogleCalendarBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

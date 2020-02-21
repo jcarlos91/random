@@ -56,6 +56,15 @@ security:
                 path: front_logout
                 target: front_login
 
+        oauth_token: # Everyone can access the access token URL.
+            pattern: ^/oauth/v2/token
+            security: false
+        api:
+            pattern:    ^/api
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  true # can be omitted as its default value
+
 
     access_control:
         - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -65,3 +74,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/index, role: ROLE_USER }
+        - { path: ^/api, role: IS_AUTHENTICATED_FULLY }

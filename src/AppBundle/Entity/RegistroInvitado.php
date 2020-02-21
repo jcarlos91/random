@@ -56,6 +56,20 @@ class RegistroInvitado
      */
     private $delete;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=255)
+     */
+    private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celular", type="string", length=255)
+     */
+    private $celular;
+
 
     /**
      * Get id
@@ -177,6 +191,38 @@ class RegistroInvitado
     public function setDelete($delete)
     {
         $this->delete = $delete;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * @param string $descripcion
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCelular()
+    {
+        return $this->celular;
+    }
+
+    /**
+     * @param string $celular
+     */
+    public function setCelular($celular)
+    {
+        $this->celular = $celular;
     }
 }
 

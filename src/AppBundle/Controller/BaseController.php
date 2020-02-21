@@ -13,6 +13,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Swift_SmtpTransport;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class BaseController extends Controller
@@ -88,4 +89,35 @@ class BaseController extends Controller
         $mailer->send($message);
     }
 
+
+    /**
+     * @param array $data
+     * @param int $statusCode
+     * @param array $errors
+     * @param bool $automaticResponse
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function apiResponse ($data = [], $statusCode = 200, $errors = [], $automaticResponse = true) {
+        if ($automaticResponse) {
+            $data['status'] = 'SUCCESS';
+            $data['status_code'] = $statusCode;
+            $data['result'] = count($errors) == 0? 'OK' : implode(',', $errors);
+            if (count($errors) > 0 || $statusCode != 200) {
+                $data['status'] = 'ERROR';
+                $data['errors'] = $errors;
+                unset($data['result']);
+            }
+        }
+
+        return new JsonResponse($data, $statusCode);
+    }
+
+    /**
+     * @param array $errors
+     * @param int $status
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function apiErrorResponse(array $errors, $status = 400) {
+        return $this->apiResponse([], $status, $errors);
+    }
 }

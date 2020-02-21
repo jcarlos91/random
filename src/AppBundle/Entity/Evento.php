@@ -25,13 +25,6 @@ class Evento
     /**
      * @var string
      *
-     * @ORM\Column(name="evento", type="string", length=255)
-     */
-    private $evento;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
@@ -50,12 +43,6 @@ class Evento
      */
     private $apellidoMaterno;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="telefono", type="string", length=255)
-     */
-    private $telefono;
 
     /**
      * @var string
@@ -107,9 +94,9 @@ class Evento
     private $empresa;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="datetime", length=255)
+     * @ORM\Column(name="fecha", type="datetime")
      */
     private $fecha;
 
@@ -314,21 +301,6 @@ class Evento
         $this->apellidoMaterno = $apellidoMaterno;
     }
 
-    /**
-     * @return string
-     */
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-
-    /**
-     * @param string $telefono
-     */
-    public function setTelefono($telefono)
-    {
-        $this->telefono = $telefono;
-    }
 
     /**
      * @return string
@@ -427,7 +399,7 @@ class Evento
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getFecha()
     {
@@ -435,27 +407,11 @@ class Evento
     }
 
     /**
-     * @param datetime $fecha
+     * @param \DateTime $fecha
      */
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEvento()
-    {
-        return $this->evento;
-    }
-
-    /**
-     * @param string $evento
-     */
-    public function setEvento($evento)
-    {
-        $this->evento = $evento;
     }
 
     /**

@@ -82,12 +82,10 @@ class FrontController extends BaseController
                     try {
                         $associate = $this->getUser();
                         $meeting->setUserCreated($associate);
-                        $meeting->setEvento($form->get('evento')->getData());
                         $meeting->setNombre($form->get('nombre')->getData());
                         $meeting->setApellidoPaterno($form->get('apellidoPaterno')->getData());
                         $meeting->setApellidoMaterno($form->get('apellidoMaterno')->getData());
                         $meeting->setCelular($form->get('celular')->getData());
-                        $meeting->setTelefono($form->get('telefono')->getData());
                         $meeting->setDireccion($form->get('direccion')->getData());
                         $meeting->setCP($form->get('cp')->getData());
                         $meeting->setEstado($form->get('estado')->getData());
@@ -193,9 +191,9 @@ class FrontController extends BaseController
 
         $columnValues = [];
         $events = $session->get('_front_event_list');
+        /** @var Evento $event */
         foreach ($events as $event){
             $value = [
-                $event->getEvento(),
                 $event->getEmpresa(),
                 $event->getNombre(),
                 $event->getApellidoPaterno(),
@@ -205,7 +203,6 @@ class FrontController extends BaseController
                 $event->getMunicipio(),
                 $event->getEstado(),
                 $event->getCP(),
-                $event->getTelefono(),
                 $event->getCelular(),
                 $event->getEmail()
             ];
@@ -270,7 +267,7 @@ class FrontController extends BaseController
     }
 
     /**
-     * @Route("/index/listado/registro/inivtados", name="front_invited_list")
+     * @Route("/index/listado/registro/invitados", name="front_invited_list")
      * @param Request $request
      * @return Response
      */
