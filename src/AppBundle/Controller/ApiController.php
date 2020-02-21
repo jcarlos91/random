@@ -50,7 +50,8 @@ class ApiController extends BaseController
             $invitedRegister->setDelete(0);
             $invitedRegister->setDescripcion($description);
             $invitedRegister->setCelular($cellphone);
-//            $this->sendEmail($email,$invitedName);
+            $this->sendEmail($email,$invitedName);
+            $this->sendEmailAdmin($email,$invitedName);
             $em->persist($invitedRegister);
             $em->flush();
             $em->getConnection()->commit();

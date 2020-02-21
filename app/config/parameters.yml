@@ -7,8 +7,9 @@ parameters:
     database_password: root
     mailer_transport: smtp
     mailer_host: smtp.gmail.com
-    mailer_user: juan.c@artak.com.mx
-    mailer_password: carlos9116
+    mailer_user: 
+    mailer_password:
     mailer_port: 587
     mailer_encryption: tls
     secret: d1cdb876e2a1e1159c8237330a43301fa7bcc5f2
+    admin_mailer:
